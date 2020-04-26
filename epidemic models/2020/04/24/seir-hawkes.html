@@ -1,0 +1,508 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1"><!-- Begin Jekyll SEO tag v2.6.1 -->
+<title>The Relation between the SEIR Epidemic Model and Hawkes Processes | fastpages</title>
+<meta name="generator" content="Jekyll v4.0.0" />
+<meta property="og:title" content="The Relation between the SEIR Epidemic Model and Hawkes Processes" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="Recently, a link between the SIR compartmental epidemic model and Hawkes-like processes was found. This opens up the possibility to use some of the rich theory related to Hawkes processes when analyzing spreads of diseases using the SIR model. As the SIR model is not capable of modeling incubation times – a feature inherent in Covid-19 and many other diseases – there is a need to extend the recently found link to more complex compartmental epidemic models like the SEIR model. We have discovered this link and present it briefly in this blog post." />
+<meta property="og:description" content="Recently, a link between the SIR compartmental epidemic model and Hawkes-like processes was found. This opens up the possibility to use some of the rich theory related to Hawkes processes when analyzing spreads of diseases using the SIR model. As the SIR model is not capable of modeling incubation times – a feature inherent in Covid-19 and many other diseases – there is a need to extend the recently found link to more complex compartmental epidemic models like the SEIR model. We have discovered this link and present it briefly in this blog post." />
+<link rel="canonical" href="https://yogabonito.github.io/blog/epidemic%20models/2020/04/24/seir-hawkes.html" />
+<meta property="og:url" content="https://yogabonito.github.io/blog/epidemic%20models/2020/04/24/seir-hawkes.html" />
+<meta property="og:site_name" content="fastpages" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2020-04-24T00:00:00-05:00" />
+<script type="application/ld+json">
+{"description":"Recently, a link between the SIR compartmental epidemic model and Hawkes-like processes was found. This opens up the possibility to use some of the rich theory related to Hawkes processes when analyzing spreads of diseases using the SIR model. As the SIR model is not capable of modeling incubation times – a feature inherent in Covid-19 and many other diseases – there is a need to extend the recently found link to more complex compartmental epidemic models like the SEIR model. We have discovered this link and present it briefly in this blog post.","@type":"BlogPosting","headline":"The Relation between the SEIR Epidemic Model and Hawkes Processes","dateModified":"2020-04-24T00:00:00-05:00","datePublished":"2020-04-24T00:00:00-05:00","url":"https://yogabonito.github.io/blog/epidemic%20models/2020/04/24/seir-hawkes.html","mainEntityOfPage":{"@type":"WebPage","@id":"https://yogabonito.github.io/blog/epidemic%20models/2020/04/24/seir-hawkes.html"},"@context":"https://schema.org"}</script>
+<!-- End Jekyll SEO tag -->
+<link rel="stylesheet" href="/blog/assets/css/style.css"><link type="application/atom+xml" rel="alternate" href="https://yogabonito.github.io/blog/feed.xml" title="fastpages" /><link rel="shortcut icon" type="image/x-icon" href="/blog/images/favicon.ico"><!-- Begin Jekyll SEO tag v2.6.1 -->
+<title>The Relation between the SEIR Epidemic Model and Hawkes Processes | fastpages</title>
+<meta name="generator" content="Jekyll v4.0.0" />
+<meta property="og:title" content="The Relation between the SEIR Epidemic Model and Hawkes Processes" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="Recently, a link between the SIR compartmental epidemic model and Hawkes-like processes was found. This opens up the possibility to use some of the rich theory related to Hawkes processes when analyzing spreads of diseases using the SIR model. As the SIR model is not capable of modeling incubation times – a feature inherent in Covid-19 and many other diseases – there is a need to extend the recently found link to more complex compartmental epidemic models like the SEIR model. We have discovered this link and present it briefly in this blog post." />
+<meta property="og:description" content="Recently, a link between the SIR compartmental epidemic model and Hawkes-like processes was found. This opens up the possibility to use some of the rich theory related to Hawkes processes when analyzing spreads of diseases using the SIR model. As the SIR model is not capable of modeling incubation times – a feature inherent in Covid-19 and many other diseases – there is a need to extend the recently found link to more complex compartmental epidemic models like the SEIR model. We have discovered this link and present it briefly in this blog post." />
+<link rel="canonical" href="https://yogabonito.github.io/blog/epidemic%20models/2020/04/24/seir-hawkes.html" />
+<meta property="og:url" content="https://yogabonito.github.io/blog/epidemic%20models/2020/04/24/seir-hawkes.html" />
+<meta property="og:site_name" content="fastpages" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2020-04-24T00:00:00-05:00" />
+<script type="application/ld+json">
+{"description":"Recently, a link between the SIR compartmental epidemic model and Hawkes-like processes was found. This opens up the possibility to use some of the rich theory related to Hawkes processes when analyzing spreads of diseases using the SIR model. As the SIR model is not capable of modeling incubation times – a feature inherent in Covid-19 and many other diseases – there is a need to extend the recently found link to more complex compartmental epidemic models like the SEIR model. We have discovered this link and present it briefly in this blog post.","@type":"BlogPosting","headline":"The Relation between the SEIR Epidemic Model and Hawkes Processes","dateModified":"2020-04-24T00:00:00-05:00","datePublished":"2020-04-24T00:00:00-05:00","url":"https://yogabonito.github.io/blog/epidemic%20models/2020/04/24/seir-hawkes.html","mainEntityOfPage":{"@type":"WebPage","@id":"https://yogabonito.github.io/blog/epidemic%20models/2020/04/24/seir-hawkes.html"},"@context":"https://schema.org"}</script>
+<!-- End Jekyll SEO tag -->
+
+<link href="https://unpkg.com/@primer/css/dist/primer.css" rel="stylesheet" />
+<link rel="stylesheet" href="//use.fontawesome.com/releases/v5.0.7/css/all.css"><link type="application/atom+xml" rel="alternate" href="https://yogabonito.github.io/blog/feed.xml" title="fastpages" />
+
+<script>
+function wrap_img(fn) {
+    if (document.attachEvent ? document.readyState === "complete" : document.readyState !== "loading") {
+        var elements = document.querySelectorAll(".post img");
+        Array.prototype.forEach.call(elements, function(el, i) {
+            if (el.getAttribute("title") && (el.className != "emoji")) {
+                const caption = document.createElement('figcaption');
+                var node = document.createTextNode(el.getAttribute("title"));
+                caption.appendChild(node);
+                const wrapper = document.createElement('figure');
+                wrapper.className = 'image';
+                el.parentNode.insertBefore(wrapper, el);
+                el.parentNode.removeChild(el);
+                wrapper.appendChild(el);
+                wrapper.appendChild(caption);
+            }
+        });
+    } else { document.addEventListener('DOMContentLoaded', fn); }
+}
+window.onload = wrap_img;
+</script>
+
+<script>
+    document.addEventListener("DOMContentLoaded", function(){
+    // add link icon to anchor tags
+    var elem = document.querySelectorAll(".anchor-link")
+    elem.forEach(e => (e.innerHTML = '<i class="fas fa-link fa-xs"></i>'));
+    });
+</script>
+</head><body><header class="site-header">
+
+  <div class="wrapper"><a class="site-title" rel="author" href="/blog/">fastpages</a><nav class="site-nav">
+        <input type="checkbox" id="nav-trigger" class="nav-trigger" />
+        <label for="nav-trigger">
+          <span class="menu-icon">
+            <svg viewBox="0 0 18 15" width="18px" height="15px">
+              <path d="M18,1.484c0,0.82-0.665,1.484-1.484,1.484H1.484C0.665,2.969,0,2.304,0,1.484l0,0C0,0.665,0.665,0,1.484,0 h15.032C17.335,0,18,0.665,18,1.484L18,1.484z M18,7.516C18,8.335,17.335,9,16.516,9H1.484C0.665,9,0,8.335,0,7.516l0,0 c0-0.82,0.665-1.484,1.484-1.484h15.032C17.335,6.031,18,6.696,18,7.516L18,7.516z M18,13.516C18,14.335,17.335,15,16.516,15H1.484 C0.665,15,0,14.335,0,13.516l0,0c0-0.82,0.665-1.483,1.484-1.483h15.032C17.335,12.031,18,12.695,18,13.516L18,13.516z"/>
+            </svg>
+          </span>
+        </label>
+
+        <div class="trigger"><a class="page-link" href="/blog/about/">About Me</a><a class="page-link" href="/blog/search/">Search</a><a class="page-link" href="/blog/categories/">Tags</a></div>
+      </nav></div>
+</header>
+<main class="page-content" aria-label="Content">
+      <div class="wrapper">
+        <article class="post h-entry" itemscope itemtype="http://schema.org/BlogPosting">
+
+  <header class="post-header">
+    <h1 class="post-title p-name" itemprop="name headline">The Relation between the SEIR Epidemic Model and Hawkes Processes</h1><p class="page-description">Recently, a link between the SIR compartmental epidemic model and Hawkes-like processes was found. This opens up the possibility to use some of the rich theory related to Hawkes processes when analyzing spreads of diseases using the SIR model. As the SIR model is not capable of modeling incubation times – a feature inherent in Covid-19 and many other diseases – there is a need to extend the recently found link to more complex compartmental epidemic models like the SEIR model. We have discovered this link and present it briefly in this blog post.</p><p class="post-meta post-meta-title"><time class="dt-published" datetime="2020-04-24T00:00:00-05:00" itemprop="datePublished">
+        Apr 24, 2020
+      </time>
+       • <span class="read-time" title="Estimated read time">
+    
+    
+      4 min read
+    
+</span></p>
+
+    
+      <p class="category-tags"><i class="fas fa-tags category-tags-icon"></i></i> 
+      
+        <a class="category-tags-link" href="/blog/categories/#epidemic models">epidemic models</a>
+        
+      
+      </p>
+    
+
+    
+      
+        <div class="pb-5 d-flex flex-wrap flex-justify-end">
+          <div class="px-2">
+
+    <a href="https://github.com/yogabonito/blog/tree/master/_notebooks/2020-04-24-seir-hawkes.ipynb" role="button" target="_blank">
+<img class="notebook-badge-image" src="/blog/assets/badges/github.svg" alt="View On GitHub">
+    </a>
+</div>
+
+          <div class="px-2">
+    <a href="https://mybinder.org/v2/gh/yogabonito/blog/master?filepath=_notebooks%2F2020-04-24-seir-hawkes.ipynb" target="_blank">
+        <img class="notebook-badge-image" src="/blog/assets/badges/binder.svg" alt="Open In Binder"/>
+    </a>
+</div>
+
+          <div class="px-2">
+    <a href="https://colab.research.google.com/github/yogabonito/blog/blob/master/_notebooks/2020-04-24-seir-hawkes.ipynb" target="_blank">
+        <img class="notebook-badge-image" src="/blog/assets/badges/colab.svg" alt="Open In Colab"/>
+    </a>
+</div>
+        </div>
+      </header>
+
+  <div class="post-content e-content" itemprop="articleBody">
+    <!--
+#################################################
+### THIS FILE WAS AUTOGENERATED! DO NOT EDIT! ###
+#################################################
+# file to edit: _notebooks/2020-04-24-seir-hawkes.ipynb
+-->
+
+<div class="container" id="notebook-container">
+        
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+
+</div>
+    
+
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+<div class="output_html rendered_html output_subarea output_execute_result">
+
+<div id="altair-viz-91620c01abc0402faf4dd7e504bae984"></div>
+<script type="text/javascript">
+  (function(spec, embedOpt){
+    let outputDiv = document.currentScript.previousElementSibling;
+    if (outputDiv.id !== "altair-viz-91620c01abc0402faf4dd7e504bae984") {
+      outputDiv = document.getElementById("altair-viz-91620c01abc0402faf4dd7e504bae984");
+    }
+    const paths = {
+      "vega": "https://cdn.jsdelivr.net/npm//vega@5?noext",
+      "vega-lib": "https://cdn.jsdelivr.net/npm//vega-lib?noext",
+      "vega-lite": "https://cdn.jsdelivr.net/npm//vega-lite@4.8.1?noext",
+      "vega-embed": "https://cdn.jsdelivr.net/npm//vega-embed@6?noext",
+    };
+
+    function loadScript(lib) {
+      return new Promise(function(resolve, reject) {
+        var s = document.createElement('script');
+        s.src = paths[lib];
+        s.async = true;
+        s.onload = () => resolve(paths[lib]);
+        s.onerror = () => reject(`Error loading script: ${paths[lib]}`);
+        document.getElementsByTagName("head")[0].appendChild(s);
+      });
+    }
+
+    function showError(err) {
+      outputDiv.innerHTML = `<div class="error" style="color:red;">${err}</div>`;
+      throw err;
+    }
+
+    function displayChart(vegaEmbed) {
+      vegaEmbed(outputDiv, spec, embedOpt)
+        .catch(err => showError(`Javascript Error: ${err.message}<br>This usually means there's a typo in your chart specification. See the javascript console for the full traceback.`));
+    }
+
+    if(typeof define === "function" && define.amd) {
+      requirejs.config({paths});
+      require(["vega-embed"], displayChart, err => showError(`Error loading script: ${err.message}`));
+    } else if (typeof vegaEmbed === "function") {
+      displayChart(vegaEmbed);
+    } else {
+      loadScript("vega")
+        .then(() => loadScript("vega-lite"))
+        .then(() => loadScript("vega-embed"))
+        .catch(showError)
+        .then(() => displayChart(vegaEmbed));
+    }
+  })({"config": {"view": {"continuousWidth": 400, "continuousHeight": 300}}, "vconcat": [{"hconcat": [{"data": {"url": "https://raw.githubusercontent.com/yogabonito/test/master/_notebooks/plots/sir.json"}, "mark": "bar", "encoding": {"tooltip": [{"type": "quantitative", "field": "day"}, {"type": "quantitative", "field": "cumulative infections"}], "x": {"type": "quantitative", "field": "day", "scale": {"domain": [1, 46]}}, "y": {"type": "quantitative", "field": "cumulative infections", "scale": {"domain": [0, 10000]}}}, "selection": {"parameter_gamma": {"type": "single", "fields": ["gamma"], "bind": {"gamma": {"input": "range", "max": 1, "min": 0.1, "name": "\u03b3 ", "step": 0.1}}, "init": {"gamma": 0.1}}, "parameter_beta": {"type": "single", "fields": ["beta"], "bind": {"beta": {"input": "range", "max": 1.4, "min": 0.4, "name": "\u03b2 ", "step": 0.2}}, "init": {"beta": 1}}}, "title": "SIR", "transform": [{"filter": {"selection": "parameter_gamma"}}, {"filter": {"selection": "parameter_beta"}}]}, {"data": {"url": "https://raw.githubusercontent.com/yogabonito/test/master/_notebooks/plots/seir.json"}, "mark": "bar", "encoding": {"tooltip": [{"type": "quantitative", "field": "day"}, {"type": "quantitative", "field": "cumulative infections"}], "x": {"type": "quantitative", "field": "day", "scale": {"domain": [1, 46]}}, "y": {"type": "quantitative", "field": "cumulative infections", "scale": {"domain": [0, 10000]}}}, "selection": {"parameter_gamma": {"type": "single", "fields": ["gamma"], "bind": {"gamma": {"input": "range", "max": 1, "min": 0.1, "name": "\u03b3 ", "step": 0.1}}, "init": {"gamma": 0.1}}, "parameter_beta": {"type": "single", "fields": ["beta"], "bind": {"beta": {"input": "range", "max": 1.4, "min": 0.4, "name": "\u03b2 ", "step": 0.2}}, "init": {"beta": 1}}, "parameter_sigma": {"type": "single", "fields": ["sigma"], "bind": {"sigma": {"input": "range", "max": 1, "min": 0.1, "name": "\u03c3 ", "step": 0.1}}, "init": {"sigma": 0.3}}}, "title": "SEIR", "transform": [{"filter": {"selection": "parameter_gamma"}}, {"filter": {"selection": "parameter_beta"}}, {"filter": {"selection": "parameter_sigma"}}]}]}, {"hconcat": [{"data": {"url": "https://raw.githubusercontent.com/yogabonito/test/master/_notebooks/plots/exp_hawkesn.json"}, "mark": "bar", "encoding": {"tooltip": [{"type": "quantitative", "field": "day"}, {"type": "quantitative", "field": "cumulative infections"}], "x": {"type": "quantitative", "field": "day", "scale": {"domain": [1, 46]}}, "y": {"type": "quantitative", "field": "cumulative infections", "scale": {"domain": [0, 10000]}}}, "selection": {"parameter_gamma": {"type": "single", "fields": ["gamma"], "bind": {"gamma": {"input": "range", "max": 1, "min": 0.1, "name": "\u03b3 ", "step": 0.1}}, "init": {"gamma": 0.1}}, "parameter_beta": {"type": "single", "fields": ["beta"], "bind": {"beta": {"input": "range", "max": 1.4, "min": 0.4, "name": "\u03b2 ", "step": 0.2}}, "init": {"beta": 1}}}, "title": "HawkesN process with exponential kernel", "transform": [{"filter": {"selection": "parameter_gamma"}}, {"filter": {"selection": "parameter_beta"}}]}, {"data": {"url": "https://raw.githubusercontent.com/yogabonito/test/master/_notebooks/plots/hypoexp_and_erlang_hawkes.json"}, "mark": "bar", "encoding": {"tooltip": [{"type": "quantitative", "field": "day"}, {"type": "quantitative", "field": "cumulative infections"}], "x": {"type": "quantitative", "field": "day", "scale": {"domain": [1, 46]}}, "y": {"type": "quantitative", "field": "cumulative infections", "scale": {"domain": [0, 10000]}}}, "selection": {"parameter_gamma": {"type": "single", "fields": ["gamma"], "bind": {"gamma": {"input": "range", "max": 1, "min": 0.1, "name": "\u03b3 ", "step": 0.1}}, "init": {"gamma": 0.1}}, "parameter_beta": {"type": "single", "fields": ["beta"], "bind": {"beta": {"input": "range", "max": 1.4, "min": 0.4, "name": "\u03b2 ", "step": 0.2}}, "init": {"beta": 1}}, "parameter_sigma": {"type": "single", "fields": ["sigma"], "bind": {"sigma": {"input": "range", "max": 1, "min": 0.1, "name": "\u03c3 ", "step": 0.1}}, "init": {"sigma": 0.3}}}, "title": "HawkesN process with hypoexponential/Erlang kernel", "transform": [{"filter": {"selection": "parameter_gamma"}}, {"filter": {"selection": "parameter_beta"}}, {"filter": {"selection": "parameter_sigma"}}]}]}], "$schema": "https://vega.github.io/schema/vega-lite/v4.8.1.json"}, {"mode": "vega-lite"});
+</script>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+    
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="Introduction">Introduction<a class="anchor-link" href="#Introduction"> </a></h2>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Since their introduction in the 1970s, Hawkes processes have been successfully applied in many different fields, such as seismology, finance, and information science. Alan G. Hawkes also considered his class of stochastic processes "a possible epidemic model in large populations"<sup id="fnref-1" class="footnote-ref"><a href="#fn-1">1</a></sup>.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>However, a model assuming an infinitely large population is often not suitable when modeling the spread of diseases. That's why many researchers preferred compartmental epidemic models (like the SIR or SEIR model) to Hawkes processes.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Only recently, it has been shown that there is a link between Hawkes-like processes and the SIR compartmental model.<sup id="fnref-2" class="footnote-ref"><a href="#fn-2">2</a></sup> As Rizoiu et al. put it, "[t]his is significant, as it
+indicates that tools developed for one approach can be applied to the other." However, this link is restricted to the SIR compartmental model. As this model lacks the capability to model incubation time, many researchers turn to more complex models such as the SEIR model and variants thereof. This is especially true for diffusion analyses in the current Covid-19 crisis.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>We have discovered a link between the SEIR model and Hawkes-like processes. In this blog post, we explain it and give a brief overview of all the models mentioned so far. For a more detailed derivation of the results and a more in-depth discussion please refer to our <a href="https://todo">paper</a>.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>But before we dive into the details, let's get a feel of the models we will talk about. The plot at the beginning of this blog post shows four subplots, each containing the total number of infections (y-axis) that occured until a certain day (x-axis) in a population of 10 thousand people using one specific simulation model. When you hover over the bars, you will notice that many infection counts are not integers; that's because they are calculated as the mean of many simulations. Fiddle around with the sliders below the plot and see how they affect the spread of a disease. Comparing the subplots, we notice three things:</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p><div class="flash">
+    <svg class="octicon octicon-info octicon octicon-info octicon octicon-info" viewBox="0 0 14 16" version="1.1" width="14" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M6.3 5.69a.942.942 0 01-.28-.7c0-.28.09-.52.28-.7.19-.18.42-.28.7-.28.28 0 .52.09.7.28.18.19.28.42.28.7 0 .28-.09.52-.28.7a1 1 0 01-.7.3c-.28 0-.52-.11-.7-.3zM8 7.99c-.02-.25-.11-.48-.31-.69-.2-.19-.42-.3-.69-.31H6c-.27.02-.48.13-.69.31-.2.2-.3.44-.31.69h1v3c.02.27.11.5.31.69.2.2.42.31.69.31h1c.27 0 .48-.11.69-.31.2-.19.3-.42.31-.69H8V7.98v.01zM7 2.3c-3.14 0-5.7 2.54-5.7 5.68 0 3.14 2.56 5.7 5.7 5.7s5.7-2.55 5.7-5.7c0-3.15-2.56-5.69-5.7-5.69v.01zM7 .98c3.86 0 7 3.14 7 7s-3.14 7-7 7-7-3.12-7-7 3.14-7 7-7z"></path></svg>
+    <strong>Note: </strong>The two subplots on the left look similar. This is a consequence of the finding of Rizoiu et al. that we mentioned above: There is a link between the SIR model and Hawkes-like processes.
+</div></p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p><div class="flash">
+    <svg class="octicon octicon-info octicon octicon-info octicon octicon-info octicon octicon-info" viewBox="0 0 14 16" version="1.1" width="14" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M6.3 5.69a.942.942 0 01-.28-.7c0-.28.09-.52.28-.7.19-.18.42-.28.7-.28.28 0 .52.09.7.28.18.19.28.42.28.7 0 .28-.09.52-.28.7a1 1 0 01-.7.3c-.28 0-.52-.11-.7-.3zM8 7.99c-.02-.25-.11-.48-.31-.69-.2-.19-.42-.3-.69-.31H6c-.27.02-.48.13-.69.31-.2.2-.3.44-.31.69h1v3c.02.27.11.5.31.69.2.2.42.31.69.31h1c.27 0 .48-.11.69-.31.2-.19.3-.42.31-.69H8V7.98v.01zM7 2.3c-3.14 0-5.7 2.54-5.7 5.68 0 3.14 2.56 5.7 5.7 5.7s5.7-2.55 5.7-5.7c0-3.15-2.56-5.69-5.7-5.69v.01zM7 .98c3.86 0 7 3.14 7 7s-3.14 7-7 7-7-3.12-7-7 3.14-7 7-7z"></path></svg>
+    <strong>Note: </strong>The two subplots on the right look similar. This is a consequence of our finding: There is a link between the SEIR model and Hawkes-like processes.
+</div></p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p><div class="flash flash-warn">
+    <svg class="octicon octicon-zap octicon octicon-zap" viewBox="0 0 10 16" version="1.1" width="10" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M10 7H6l3-7-9 9h4l-3 7 9-9z"></path></svg>
+    <strong>Important: </strong>The subplots on the left and on the right are <strong>very</strong> different! Also note, that you can adjust the latency in the models plotted on the right (higher values for $\sigma$ implying less latency). The models on the left, however, are not capable of modeling latency (and thus incubation time). This underlines the importance of extending the link found by Rizoiu et al. to other compartmental models.
+</div></p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="Hawkes-Processes">Hawkes Processes<a class="anchor-link" href="#Hawkes-Processes"> </a></h2>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>A Hawkes process is a type of counting process. A counting process counts events. These events can for example be infections (in epidemiology) or earthquakes (in seismology). Whenever an event occurs, the counting process experiences a jump of size $1$. Let's have a look at a sample path of a Hawkes process $N_t$ in the following figure (the blue line).</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p><img src="/blog/images/copied_from_nb/./fig/hawkes_sample_path_with_conditional_intensity.svg" alt="Hawkes process - sample path and corresponding conditional intensity" /></p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>You will notice that its jumps are not evenly distributed over the observed time interval $[0, 60]$. Why's that?</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>It's because the behavior of $N_t$ is dictated by its so-called conditional intensity $\lambda_t$ (the orange line). Whenever $\lambda_t$ is high we have a high probability of events. A low $\lambda_t$, on the other hand, leads to fewer jumps in $N_t$. This property is valid for all counting processes.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>What makes Hawkes processes so special is that their conditional intensity $\lambda_t$ again depends on the counting process. In the figure above we see that the jumps in $N_t$ also increase the conditional intensity.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>In general, the conditional intensity of a Hawkes process has the form
+\begin{align}
+\lambda_t
+= \mu(t) + \sum\limits_{t_j &lt; t} \nu(t-t_j)
+,
+\end{align}
+where $t_j$ is an event time and $\mu(t)$ as well as $\nu(t-t_j)$ are both $\geq 0$.<sup id="fnref-3" class="footnote-ref"><a href="#fn-3">3</a></sup>
+The function $\mu$ is called the background intensity. It is independent of $N_t$. The function $\nu$, however, depends on the history of the counting process $N_t$. We call $\nu$ the kernel of the Hawkes process.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>In the figure above, $\mu(t)$ was independent of $t$ (hence we simply write $\mu$) and $\nu$ was an exponential kernel; this means
+\begin{align}
+\lambda_t
+= \mu
++
+\sum\limits_{t_j &lt; t} \kappa \theta \text{e}^{-\theta (t - t_j)}.
+\end{align}</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Note that the exponential kernel leads to immediate jumps in $\lambda_t$ when an event occurs. When modeling infections, this means that an infection immediately increases the probability of further infections. This also means, that there is no way of taking incubation time into account. We will adress this issue below. But first, let's head to the other class of models we discuss in this post.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="Compartmental-Epidemic-Models">Compartmental Epidemic Models<a class="anchor-link" href="#Compartmental-Epidemic-Models"> </a></h2>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="The-SIR-Model">The SIR Model<a class="anchor-link" href="#The-SIR-Model"> </a></h3>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p><img src="/blog/images/copied_from_nb/./fig/flowcharts/sir.svg" alt="SIR model" /></p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="The-SEIR-Model">The SEIR Model<a class="anchor-link" href="#The-SEIR-Model"> </a></h3>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p><img src="/blog/images/copied_from_nb/./fig/flowcharts/seir.svg" alt="SEIR model" /></p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>$\newcommand{\testnewcommand}{\text{newcommand works :)}}$</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="The-Link-between-the-SIR-&amp;-SEIR-Model-and-the-Hawkes-Processes">The Link between the SIR &amp; SEIR Model and the Hawkes Processes<a class="anchor-link" href="#The-Link-between-the-SIR-&amp;-SEIR-Model-and-the-Hawkes-Processes"> </a></h2>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="The-SIR-Model-and-the-HawkesN-Process-with-an-Exponential-Kernel">The SIR Model and the HawkesN Process with an Exponential Kernel<a class="anchor-link" href="#The-SIR-Model-and-the-HawkesN-Process-with-an-Exponential-Kernel"> </a></h3>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="The-SEIR-Model-and-the-HawkesN-Process-with-a-Hypoexponential-or-Erlang-Kernel">The SEIR Model and the HawkesN Process with a Hypoexponential or Erlang Kernel<a class="anchor-link" href="#The-SEIR-Model-and-the-HawkesN-Process-with-a-Hypoexponential-or-Erlang-Kernel"> </a></h3>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>$\testnewcommand$</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>\newcommand{\testnewcommandinrawcell}{\text{newcommand works in raw cell :)}}</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>$\testnewcommandinrawcell$</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="References">References<a class="anchor-link" href="#References"> </a></h2>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p><div class="footnotes"><p id="fn-1">1. Hawkes (1971): "Spectra of some self-exciting and mutually exciting point processes"<a href="#fnref-1" class="footnote footnotes">↩</a></p></div></p>
+<p><div class="footnotes"><p id="fn-2">2. Rizoiu et al. (2018): "SIR-Hawkes: Linking Epidemic Models and Hawkes Processes to Model Diffusions in Finite Populations"<a href="#fnref-2" class="footnote footnotes">↩</a></p></div></p>
+<p><div class="footnotes"><p id="fn-3">3. <a href="https://mathworld.wolfram.com/HawkesProcess.html">https://mathworld.wolfram.com/HawkesProcess.html</a><a href="#fnref-3" class="footnote footnotes">↩</a></p></div></p>
+
+</div>
+</div>
+</div>
+</div>
+
+
+
+  </div><!-- from https://github.com/utterance/utterances -->
+<script src="https://utteranc.es/client.js"
+        repo="yogabonito/blog"
+        issue-term="title"
+        label="blogpost-comment"
+        theme="github-light"
+        crossorigin="anonymous"
+        async>
+</script><a class="u-url" href="/blog/epidemic%20models/2020/04/24/seir-hawkes.html" hidden></a>
+</article>
+      </div>
+    </main><footer class="site-footer h-card">
+  <data class="u-url" href="/blog/"></data>
+
+  <div class="wrapper">
+
+    <div class="footer-col-wrapper">
+      <div class="footer-col">
+        <p class="feed-subscribe">
+          <a href="/blog/feed.xml">
+            <svg class="svg-icon orange">
+              <use xlink:href="/blog/assets/minima-social-icons.svg#rss"></use>
+            </svg><span>Subscribe</span>
+          </a>
+        </p>
+      </div>
+      <div class="footer-col">
+        <p>An easy to use blogging platform with support for Jupyter Notebooks.</p>
+      </div>
+    </div>
+
+    <div class="social-links"><ul class="social-media-list"><li><a rel="me" href="https://github.com/fastai" title="fastai"><svg class="svg-icon grey"><use xlink:href="/blog/assets/minima-social-icons.svg#github"></use></svg></a></li><li><a rel="me" href="https://twitter.com/fastdotai" title="fastdotai"><svg class="svg-icon grey"><use xlink:href="/blog/assets/minima-social-icons.svg#twitter"></use></svg></a></li></ul>
+</div>
+
+  </div>
+
+</footer>
+</body>
+
+</html>
