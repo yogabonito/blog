@@ -42,7 +42,9 @@ minima:
     github: yogabonito
 
 # Set this to true to get LaTeX math equation support
-use_math: true
+use_math: false  # true means use KaTeX which has no equation numbering
+                 # - we use MathJax instead of KaTeX (via _layouts/notebook.html)
+                 # ... cf. https://forums.fast.ai/t/consider-setting-use-math-to-true-by-default/64276/5
 
 # Set this to true to display the summary of your blog post under your title on the Home page.
 show_description: true
