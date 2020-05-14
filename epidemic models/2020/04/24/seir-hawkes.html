@@ -7,50 +7,34 @@
 <meta name="generator" content="Jekyll v4.0.0" />
 <meta property="og:title" content="The Relation between the SEIR Epidemic Model and Hawkes Processes" />
 <meta property="og:locale" content="en_US" />
-<meta name="description" content="Recently, a link between the SIR compartmental epidemic model and Hawkes-like processes was found. This opens up the possibility to use some of the rich theory related to Hawkes processes when analyzing spreads of diseases using the SIR model. As the SIR model is not capable of modeling latent periods – a feature inherent in Covid-19 and many other diseases – there is a need to extend the recently found link to more complex compartmental epidemic models like the SEIR model. We have discovered this link and present it briefly in this blog post. For a detailed derivation of our results and a more in-depth discussion please refer to my master’s thesis (and soon our paper)." />
-<meta property="og:description" content="Recently, a link between the SIR compartmental epidemic model and Hawkes-like processes was found. This opens up the possibility to use some of the rich theory related to Hawkes processes when analyzing spreads of diseases using the SIR model. As the SIR model is not capable of modeling latent periods – a feature inherent in Covid-19 and many other diseases – there is a need to extend the recently found link to more complex compartmental epidemic models like the SEIR model. We have discovered this link and present it briefly in this blog post. For a detailed derivation of our results and a more in-depth discussion please refer to my master’s thesis (and soon our paper)." />
+<meta name="description" content="Recently, a link between the SIR compartmental epidemic model and Hawkes-like processes was found. This opens up the possibility to use some of the rich theory related to Hawkes processes when analyzing spreads of diseases using the SIR model. As the SIR model is not capable of modeling latent periods – a feature inherent in Covid-19 and many other diseases – there is a need to extend the recently found link to more complex compartmental epidemic models such as the SEIR model. We have discovered this link and present it briefly in this blog post. For a detailed derivation of our results and a more in-depth discussion please refer to my master’s thesis (and soon our paper)." />
+<meta property="og:description" content="Recently, a link between the SIR compartmental epidemic model and Hawkes-like processes was found. This opens up the possibility to use some of the rich theory related to Hawkes processes when analyzing spreads of diseases using the SIR model. As the SIR model is not capable of modeling latent periods – a feature inherent in Covid-19 and many other diseases – there is a need to extend the recently found link to more complex compartmental epidemic models such as the SEIR model. We have discovered this link and present it briefly in this blog post. For a detailed derivation of our results and a more in-depth discussion please refer to my master’s thesis (and soon our paper)." />
 <link rel="canonical" href="https://yogabonito.github.io/blog/epidemic%20models/2020/04/24/seir-hawkes.html" />
 <meta property="og:url" content="https://yogabonito.github.io/blog/epidemic%20models/2020/04/24/seir-hawkes.html" />
 <meta property="og:site_name" content="yogaBLOGito" />
 <meta property="og:type" content="article" />
 <meta property="article:published_time" content="2020-04-24T00:00:00-05:00" />
 <script type="application/ld+json">
-{"mainEntityOfPage":{"@type":"WebPage","@id":"https://yogabonito.github.io/blog/epidemic%20models/2020/04/24/seir-hawkes.html"},"description":"Recently, a link between the SIR compartmental epidemic model and Hawkes-like processes was found. This opens up the possibility to use some of the rich theory related to Hawkes processes when analyzing spreads of diseases using the SIR model. As the SIR model is not capable of modeling latent periods – a feature inherent in Covid-19 and many other diseases – there is a need to extend the recently found link to more complex compartmental epidemic models like the SEIR model. We have discovered this link and present it briefly in this blog post. For a detailed derivation of our results and a more in-depth discussion please refer to my master’s thesis (and soon our paper).","@type":"BlogPosting","url":"https://yogabonito.github.io/blog/epidemic%20models/2020/04/24/seir-hawkes.html","headline":"The Relation between the SEIR Epidemic Model and Hawkes Processes","dateModified":"2020-04-24T00:00:00-05:00","datePublished":"2020-04-24T00:00:00-05:00","@context":"https://schema.org"}</script>
+{"mainEntityOfPage":{"@type":"WebPage","@id":"https://yogabonito.github.io/blog/epidemic%20models/2020/04/24/seir-hawkes.html"},"description":"Recently, a link between the SIR compartmental epidemic model and Hawkes-like processes was found. This opens up the possibility to use some of the rich theory related to Hawkes processes when analyzing spreads of diseases using the SIR model. As the SIR model is not capable of modeling latent periods – a feature inherent in Covid-19 and many other diseases – there is a need to extend the recently found link to more complex compartmental epidemic models such as the SEIR model. We have discovered this link and present it briefly in this blog post. For a detailed derivation of our results and a more in-depth discussion please refer to my master’s thesis (and soon our paper).","@type":"BlogPosting","url":"https://yogabonito.github.io/blog/epidemic%20models/2020/04/24/seir-hawkes.html","headline":"The Relation between the SEIR Epidemic Model and Hawkes Processes","dateModified":"2020-04-24T00:00:00-05:00","datePublished":"2020-04-24T00:00:00-05:00","@context":"https://schema.org"}</script>
 <!-- End Jekyll SEO tag -->
 <link rel="stylesheet" href="/blog/assets/css/style.css"><link type="application/atom+xml" rel="alternate" href="https://yogabonito.github.io/blog/feed.xml" title="yogaBLOGito" /><link rel="shortcut icon" type="image/x-icon" href="/blog/images/favicon.ico"><!-- Begin Jekyll SEO tag v2.6.1 -->
 <title>The Relation between the SEIR Epidemic Model and Hawkes Processes | yogaBLOGito</title>
 <meta name="generator" content="Jekyll v4.0.0" />
 <meta property="og:title" content="The Relation between the SEIR Epidemic Model and Hawkes Processes" />
 <meta property="og:locale" content="en_US" />
-<meta name="description" content="Recently, a link between the SIR compartmental epidemic model and Hawkes-like processes was found. This opens up the possibility to use some of the rich theory related to Hawkes processes when analyzing spreads of diseases using the SIR model. As the SIR model is not capable of modeling latent periods – a feature inherent in Covid-19 and many other diseases – there is a need to extend the recently found link to more complex compartmental epidemic models like the SEIR model. We have discovered this link and present it briefly in this blog post. For a detailed derivation of our results and a more in-depth discussion please refer to my master’s thesis (and soon our paper)." />
-<meta property="og:description" content="Recently, a link between the SIR compartmental epidemic model and Hawkes-like processes was found. This opens up the possibility to use some of the rich theory related to Hawkes processes when analyzing spreads of diseases using the SIR model. As the SIR model is not capable of modeling latent periods – a feature inherent in Covid-19 and many other diseases – there is a need to extend the recently found link to more complex compartmental epidemic models like the SEIR model. We have discovered this link and present it briefly in this blog post. For a detailed derivation of our results and a more in-depth discussion please refer to my master’s thesis (and soon our paper)." />
+<meta name="description" content="Recently, a link between the SIR compartmental epidemic model and Hawkes-like processes was found. This opens up the possibility to use some of the rich theory related to Hawkes processes when analyzing spreads of diseases using the SIR model. As the SIR model is not capable of modeling latent periods – a feature inherent in Covid-19 and many other diseases – there is a need to extend the recently found link to more complex compartmental epidemic models such as the SEIR model. We have discovered this link and present it briefly in this blog post. For a detailed derivation of our results and a more in-depth discussion please refer to my master’s thesis (and soon our paper)." />
+<meta property="og:description" content="Recently, a link between the SIR compartmental epidemic model and Hawkes-like processes was found. This opens up the possibility to use some of the rich theory related to Hawkes processes when analyzing spreads of diseases using the SIR model. As the SIR model is not capable of modeling latent periods – a feature inherent in Covid-19 and many other diseases – there is a need to extend the recently found link to more complex compartmental epidemic models such as the SEIR model. We have discovered this link and present it briefly in this blog post. For a detailed derivation of our results and a more in-depth discussion please refer to my master’s thesis (and soon our paper)." />
 <link rel="canonical" href="https://yogabonito.github.io/blog/epidemic%20models/2020/04/24/seir-hawkes.html" />
 <meta property="og:url" content="https://yogabonito.github.io/blog/epidemic%20models/2020/04/24/seir-hawkes.html" />
 <meta property="og:site_name" content="yogaBLOGito" />
 <meta property="og:type" content="article" />
 <meta property="article:published_time" content="2020-04-24T00:00:00-05:00" />
 <script type="application/ld+json">
-{"mainEntityOfPage":{"@type":"WebPage","@id":"https://yogabonito.github.io/blog/epidemic%20models/2020/04/24/seir-hawkes.html"},"description":"Recently, a link between the SIR compartmental epidemic model and Hawkes-like processes was found. This opens up the possibility to use some of the rich theory related to Hawkes processes when analyzing spreads of diseases using the SIR model. As the SIR model is not capable of modeling latent periods – a feature inherent in Covid-19 and many other diseases – there is a need to extend the recently found link to more complex compartmental epidemic models like the SEIR model. We have discovered this link and present it briefly in this blog post. For a detailed derivation of our results and a more in-depth discussion please refer to my master’s thesis (and soon our paper).","@type":"BlogPosting","url":"https://yogabonito.github.io/blog/epidemic%20models/2020/04/24/seir-hawkes.html","headline":"The Relation between the SEIR Epidemic Model and Hawkes Processes","dateModified":"2020-04-24T00:00:00-05:00","datePublished":"2020-04-24T00:00:00-05:00","@context":"https://schema.org"}</script>
+{"mainEntityOfPage":{"@type":"WebPage","@id":"https://yogabonito.github.io/blog/epidemic%20models/2020/04/24/seir-hawkes.html"},"description":"Recently, a link between the SIR compartmental epidemic model and Hawkes-like processes was found. This opens up the possibility to use some of the rich theory related to Hawkes processes when analyzing spreads of diseases using the SIR model. As the SIR model is not capable of modeling latent periods – a feature inherent in Covid-19 and many other diseases – there is a need to extend the recently found link to more complex compartmental epidemic models such as the SEIR model. We have discovered this link and present it briefly in this blog post. For a detailed derivation of our results and a more in-depth discussion please refer to my master’s thesis (and soon our paper).","@type":"BlogPosting","url":"https://yogabonito.github.io/blog/epidemic%20models/2020/04/24/seir-hawkes.html","headline":"The Relation between the SEIR Epidemic Model and Hawkes Processes","dateModified":"2020-04-24T00:00:00-05:00","datePublished":"2020-04-24T00:00:00-05:00","@context":"https://schema.org"}</script>
 <!-- End Jekyll SEO tag -->
 
 <link href="https://unpkg.com/@primer/css/dist/primer.css" rel="stylesheet" />
 <link rel="stylesheet" href="//use.fontawesome.com/releases/v5.0.7/css/all.css"><link type="application/atom+xml" rel="alternate" href="https://yogabonito.github.io/blog/feed.xml" title="yogaBLOGito" />
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/katex.min.css" integrity="sha384-zB1R0rpPzHqg7Kpt0Aljp8JPLqbXI3bhnPWROx27a9N0Ll6ZP/+DiW/UqRcLbRjq" crossorigin="anonymous">
-    <script type="text/javascript" async src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-MML-AM_CHTML"> </script>
-    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/katex.min.js" integrity="sha384-y23I5Q6l+B6vatafAwxRu/0oK/79VlbSz7Q9aiSZUvyWYIYsd+qj+o24G5ZU2zJz" crossorigin="anonymous"></script>
-    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/contrib/auto-render.min.js" integrity="sha384-kWPLUVMOks5AQFrykwIup5lo0m3iMkkHrD0uJ4H5cjeGihAutqP0yW0J6dpFiVkI" crossorigin="anonymous"></script>
-    <script>
-    document.addEventListener("DOMContentLoaded", function() {
-        renderMathInElement( document.body, {
-        delimiters: [
-            {left: "$$", right: "$$", display: true},
-            {left: "[%", right: "%]", display: true},
-            {left: "$", right: "$", display: false}
-        ]}
-        );
-    });
-    </script>
-
 
 <script>
 function wrap_img(fn) {
@@ -101,7 +85,7 @@ window.onload = wrap_img;
         <article class="post h-entry" itemscope itemtype="http://schema.org/BlogPosting">
 
   <header class="post-header">
-    <h1 class="post-title p-name" itemprop="name headline">The Relation between the SEIR Epidemic Model and Hawkes Processes</h1><p class="page-description">Recently, a link between the SIR compartmental epidemic model and Hawkes-like processes was found. This opens up the possibility to use some of the rich theory related to Hawkes processes when analyzing spreads of diseases using the SIR model. As the SIR model is not capable of modeling latent periods – a feature inherent in Covid-19 and many other diseases – there is a need to extend the recently found link to more complex compartmental epidemic models like the SEIR model. We have discovered this link and present it briefly in this blog post. For a detailed derivation of our results and a more in-depth discussion please refer to <a href="https://diglib.tugraz.at/download.php?id=5d4a774705898&location=aleph">my master's thesis</a> (and soon our paper).</p><p class="post-meta post-meta-title"><time class="dt-published" datetime="2020-04-24T00:00:00-05:00" itemprop="datePublished">
+    <h1 class="post-title p-name" itemprop="name headline">The Relation between the SEIR Epidemic Model and Hawkes Processes</h1><p class="page-description">Recently, a link between the SIR compartmental epidemic model and Hawkes-like processes was found. This opens up the possibility to use some of the rich theory related to Hawkes processes when analyzing spreads of diseases using the SIR model. As the SIR model is not capable of modeling latent periods – a feature inherent in Covid-19 and many other diseases – there is a need to extend the recently found link to more complex compartmental epidemic models such as the SEIR model. We have discovered this link and present it briefly in this blog post. For a detailed derivation of our results and a more in-depth discussion please refer to <a href="https://diglib.tugraz.at/download.php?id=5d4a774705898&location=aleph">my master's thesis</a> (and soon our paper).</p><p class="post-meta post-meta-title"><time class="dt-published" datetime="2020-04-24T00:00:00-05:00" itemprop="datePublished">
         Apr 24, 2020
       </time>
        • <span class="read-time" title="Estimated read time">
@@ -134,7 +118,20 @@ window.onload = wrap_img;
       </header>
 
   <div class="post-content e-content" itemprop="articleBody">
-    <!--
+    <script type="text/x-mathjax-config"> MathJax.Hub.Config({ TeX: { equationNumbers: { autoNumber: "all" } } }); </script>
+<script type="text/x-mathjax-config">
+   MathJax.Hub.Config({
+     tex2jax: {
+       inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+       processEscapes: true
+     }
+   });
+</script>
+<script src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML" type="text/javascript"></script>
+
+
+
+<!--
 #################################################
 ### THIS FILE WAS AUTOGENERATED! DO NOT EDIT! ###
 #################################################
@@ -236,7 +233,7 @@ window.onload = wrap_img;
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>However, a model assuming an infinitely large population is often not suitable when modeling the spread of diseases. That is why many researchers preferred compartmental epidemic models (like the SIR or SEIR model) to Hawkes processes.</p>
+<p>However, a model assuming an infinitely large population is often not suitable when modeling the spread of diseases. That is why many researchers preferred compartmental epidemic models (such as the SIR or SEIR model) to Hawkes processes.</p>
 
 </div>
 </div>
@@ -301,7 +298,7 @@ indicates that tools developed for one approach can be applied to the other." Ho
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>A Hawkes process is a type of counting process. A counting process counts events. These events can for example be infections (in epidemiology) or earthquakes (in seismology). Whenever an event occurs, the counting process experiences a jump of size $1$. Let's have a look at a sample path of a Hawkes process $N_t$ in the following figure (the blue line).</p>
+<p>A Hawkes process is a type of counting process. A counting process counts events. These events can, for example, be infections (in epidemiology) or earthquakes (in seismology). Whenever an event occurs, the counting process experiences a jump of size $1$. Let's have a look at a sample path of a Hawkes process $N_t$ in the following figure (the blue line).</p>
 
 </div>
 </div>
@@ -352,7 +349,7 @@ We call $\mu(t)$ the <em>background intensity</em>. It is independent of $N_t$.<
 <div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>In the figure above, $\mu(t) = \mu$ was constant and $\nu$ was an exponential kernel, this means
-\begin{align}
+\begin{align} \label{exphawkes}
 \lambda_t
 = \mu
 +
@@ -378,13 +375,13 @@ We call $\mu(t)$ the <em>background intensity</em>. It is independent of $N_t$.<
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h2 id="The-SIR-Model">The SIR Model<a class="anchor-link" href="#The-SIR-Model"> </a></h2>
+<h3 id="The-SIR-Model">The SIR Model<a class="anchor-link" href="#The-SIR-Model"> </a></h3>
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h3 id="Overview">Overview<a class="anchor-link" href="#Overview"> </a></h3>
+<h4 id="Overview">Overview<a class="anchor-link" href="#Overview"> </a></h4>
 </div>
 </div>
 </div>
@@ -424,7 +421,7 @@ We call $\mu(t)$ the <em>background intensity</em>. It is independent of $N_t$.<
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h3 id="The-link-to-Hawkes-processes">The link to Hawkes processes<a class="anchor-link" href="#The-link-to-Hawkes-processes"> </a></h3>
+<h4 id="The-link-to-Hawkes-processes">The link to Hawkes processes<a class="anchor-link" href="#The-link-to-Hawkes-processes"> </a></h4>
 </div>
 </div>
 </div>
@@ -463,8 +460,9 @@ where $\beta$ and $\gamma$ are the parameters of the SIR model. (They also show 
 \end{align}
 and
 \begin{align}
-\theta = \gamma.
+\theta = \gamma
 \end{align}
+in equation $\eqref{exphawkes}$.
 Now the only difference is the factor in front of the sum!</p>
 
 </div>
@@ -493,7 +491,7 @@ Now the only difference is the factor in front of the sum!</p>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>Using the link found by Rizoiu et al. we can translate an SIR model easily into a HawkesN process and vice versa using the equations above. This allows one for example to estimate model parameters in one model and then make predictions using the other model.</p>
+<p>Using the link found by Rizoiu et al. we can translate an SIR model easily into a HawkesN process and vice versa using the equations above. This allows one, for example, to estimate model parameters in one model and then make predictions using the other model.</p>
 
 </div>
 </div>
@@ -687,7 +685,7 @@ where everything that follows the scale parameter $\kappa$ is the density of a h
 <div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>In this blog post we have briefly presented the link between the SEIR model and Hawkes processes, which can be seen as a generalization of Rizoiu et al.'s work. This means, that now this link can be used when modeling diseases that feature a latent period, during which infected people are not infectious.</p>
-<p>This, however, does not imply that the SEIR model is suitable for every disease and one has to keep in mind that the latent period is not necesserily the same as the incubation period<sup id="fnref-5" class="footnote-ref"><a href="#fn-5">5</a></sup>. This distinction is crucial for many diseases (e.g. Covid-19) and can complicate the the application of the SEIR model.</p>
+<p>This, however, does not imply that the SEIR model is suitable for every disease and one has to keep in mind that the latent period is not necesserily the same as the incubation period<sup id="fnref-5" class="footnote-ref"><a href="#fn-5">5</a></sup>. This distinction is crucial for many diseases (e.g., Covid-19) and can complicate the the application of the SEIR model.</p>
 <p>Nonetheless, even in the case of Covid-19 there are works showing the application of the SEIR model. To this end, sometimes the model is adapted. One such adjustment can be the incorporation of quarantine measures.</p>
 <p>Further generalizations of the link between SEIR and HawkesN are possible and we will continue our research on this topic in order to offer tools related to Hawkes-processes to a wider range of compartmental epidemic models.</p>
 
