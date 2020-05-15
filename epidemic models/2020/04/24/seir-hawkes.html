@@ -449,7 +449,7 @@ We call $\mu(t)$ the <em>background intensity</em>. It is independent of $N_t$.<
 <div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Unfortunately, the result is not directly comparable to the conditional intensity of a Hawkes process. This is because a Hawkes process can only model infections, whereas the SIR model also contains recoveries as events. Therefore, Rizoiu et al. calculated an expected value, integrating over the recovery times, which are not observable in the Hawkes process. If we call the set of all recovery times $\mathcal{T}$, then the main result of Rizoiu et al. is
-\begin{align}
+\begin{align} \label{sirhawkesn}
 \mathbb{E}_{\mathcal{T}} \left(  \lambda_t^{SIR} \right)
 = \left( 1 - \frac{I_t + R_t}{N} \right)
 \sum\limits_{t_j &lt; t} \beta \text{e}^{-\gamma (t - t_j)},
@@ -469,7 +469,7 @@ and
 \begin{align}
 \theta = \gamma
 \end{align}
-in equation $\eqref{exphawkes}$.
+in equation $\eqref{exphawkes}$ and compare it to $\eqref{sirhawkesn}$.
 Now the only difference is the factor in front of the sum!</p>
 
 </div>
