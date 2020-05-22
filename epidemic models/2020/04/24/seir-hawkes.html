@@ -416,7 +416,7 @@ We call $\mu(t)$ the <em>background intensity</em>. It is independent of $N_t$.<
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>The exact laws that govern the rates at wich people transition from one compartment to the next can be expressed in various ways. In the so-called CTMC-SIR model this is achieved via stochastic differential equations. For brevity (and as they are not our main focus), we will not present them here.</p>
+<p>The exact laws that govern the rates at wich people transition from one compartment to the next can be expressed in various ways. In the so-called CTMC-SIR model this is achieved via infinitesimal transition probabilities. For brevity (and as they are not our main focus), we will not present them here.</p>
 
 </div>
 </div>
@@ -443,7 +443,7 @@ We call $\mu(t)$ the <em>background intensity</em>. It is independent of $N_t$.<
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>We can solve this issue by choosing the process $I_t + R_t$. This represents a counting process, which counts all infections that have occurred until time $t$. Now it is possible to derive the conditional intensity $\lambda_t^{SIR}$ from the stochastic differential equations of the SIR model.</p>
+<p>We can solve this issue by choosing the process $I_t + R_t$. This represents a counting process, which counts all infections that have occurred until time $t$. Now it is possible to derive the conditional intensity $\lambda_t^{SIR}$ from the infinitesimal transition probabilities of the SIR model.</p>
 
 </div>
 </div>
@@ -456,7 +456,7 @@ We call $\mu(t)$ the <em>background intensity</em>. It is independent of $N_t$.<
 = \left( 1 - \frac{I_t + R_t}{N} \right)
 \sum\limits_{t_j &lt; t} \beta \text{e}^{-\gamma (t - t_j)},
 \end{align}
-where $\beta$ and $\gamma$ are the parameters of the SIR model. (They also show up in the stochastic differential equations of the model.) $\beta$ is governing the rate at which infections take place, whereas $\gamma$ determines how fast people recover.</p>
+where $\beta$ and $\gamma$ are the parameters of the SIR model. (They also show up in the infinitesimal transition probabilities of the model.) $\beta$ is governing the rate at which infections take place, whereas $\gamma$ determines how fast people recover.</p>
 
 </div>
 </div>
@@ -586,7 +586,9 @@ where everything that follows the scale parameter $\kappa$ is the density of a h
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>How do these formulas differ from the conditional intensity with an exponential kernel? Have a look at the following chart. You can select a sequence of event times below the chart and the plot will update accordingly. To highlight the conditional intensity with a specific kernel, just click on the corresponding label in the legend. (To select multiple kernels, hold the shift key while clicking.)</p>
+<p>How do these formulas differ from the conditional intensity with an exponential kernel? Have a look at the following chart. You can select a sequence of event times below the chart and the plot will update accordingly. <!---
+To highlight the conditional intensity with a specific kernel, just click on the corresponding label in the legend. (To select multiple kernels, hold the shift key while clicking.)
+--></p>
 
 </div>
 </div>
@@ -603,12 +605,12 @@ where everything that follows the scale parameter $\kappa$ is the density of a h
 
 <div class="output_html rendered_html output_subarea output_execute_result">
 
-<div id="altair-viz-5d9eef48d2044104a65149e449c95ff1"></div>
+<div id="altair-viz-f3385d04653c401b89cbcf401895120b"></div>
 <script type="text/javascript">
   (function(spec, embedOpt){
     let outputDiv = document.currentScript.previousElementSibling;
-    if (outputDiv.id !== "altair-viz-5d9eef48d2044104a65149e449c95ff1") {
-      outputDiv = document.getElementById("altair-viz-5d9eef48d2044104a65149e449c95ff1");
+    if (outputDiv.id !== "altair-viz-f3385d04653c401b89cbcf401895120b") {
+      outputDiv = document.getElementById("altair-viz-f3385d04653c401b89cbcf401895120b");
     }
     const paths = {
       "vega": "https://cdn.jsdelivr.net/npm//vega@5?noext",
@@ -650,7 +652,7 @@ where everything that follows the scale parameter $\kappa$ is the density of a h
         .catch(showError)
         .then(() => displayChart(vegaEmbed));
     }
-  })({"config": {"view": {"continuousWidth": 400, "continuousHeight": 300}}, "data": {"url": "https://raw.githubusercontent.com/yogabonito/blog/master/_notebooks/fig/conditional_intensities.json"}, "mark": "line", "encoding": {"color": {"type": "nominal", "field": "kernel"}, "opacity": {"condition": {"value": 1, "selection": "selector007"}, "value": 0.2}, "tooltip": [{"type": "quantitative", "field": "t"}, {"type": "quantitative", "field": "\u03bb\u209c"}, {"type": "nominal", "field": "kernel"}], "x": {"type": "quantitative", "field": "t"}, "y": {"type": "quantitative", "field": "\u03bb\u209c", "scale": {"domain": [0, 3.5]}}}, "selection": {"selector007": {"type": "multi", "fields": ["kernel"], "bind": "legend"}, "event Sequence": {"type": "single", "fields": ["event sequence"], "bind": {"input": "radio", "options": ["{0}  ", "{0, 1, 2}  ", "{0, 1, 2, ..., 9}  "], "name": "Event times: "}, "init": {"event sequence": "{0, 1, 2}  "}}}, "transform": [{"filter": {"selection": "event Sequence"}}], "$schema": "https://vega.github.io/schema/vega-lite/v4.8.1.json"}, {"mode": "vega-lite"});
+  })({"config": {"view": {"continuousWidth": 400, "continuousHeight": 300}}, "data": {"url": "https://raw.githubusercontent.com/yogabonito/blog/master/_notebooks/fig/conditional_intensities.json"}, "mark": "line", "encoding": {"color": {"type": "nominal", "field": "kernel"}, "opacity": {"condition": {"value": 1, "selection": "selector016"}, "value": 0.2}, "tooltip": [{"type": "quantitative", "field": "t"}, {"type": "quantitative", "field": "\u03bb\u209c"}, {"type": "nominal", "field": "kernel"}], "x": {"type": "quantitative", "field": "t"}, "y": {"type": "quantitative", "field": "\u03bb\u209c", "scale": {"domain": [0, 3.5]}}}, "selection": {"selector016": {"type": "multi", "fields": ["kernel"], "bind": "legend"}, "event Sequence": {"type": "single", "fields": ["event sequence"], "bind": {"input": "radio", "options": ["{0}  ", "{0, 1, 2}  ", "{0, 1, 2, ..., 9}  "], "name": "Event times: "}, "init": {"event sequence": "{0, 1, 2}  "}}}, "transform": [{"filter": {"selection": "event Sequence"}}], "$schema": "https://vega.github.io/schema/vega-lite/v4.8.1.json"}, {"mode": "vega-lite"});
 </script>
 </div>
 
